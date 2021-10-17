@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+
+<!-- set xml name space for : th  (in order to use thymeleaf expressions)-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Thymeleaf Demo</title>
+
+<!-- reference css file -->
+<link rel="stylesheet" th:href="@{/css/demo.css}">
+
+
+</head>
+
+<body>
+	<!-- thymeleaf accesses "theDate" from the Spring MVC model -->
+	<!-- the below expression is a thymeleaf extression -->
+	<p th:text="'Time on the server is' + ${theDate}" class="funny" />
+	<!--  here the class is the class in css file to apply style -->
+</body>
+
+</html>

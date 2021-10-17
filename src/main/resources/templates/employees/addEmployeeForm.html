@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+
+<head>
+
+	 <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	
+
+	<title> Save Employee </title>
+</head>
+
+<body>
+
+	<div class="container"> <!--  this is a container for bootstrap classes -->
+
+
+		<h3>Employee Directory</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Save Employee</p>
+		
+		<!-- when the form is loaded will call all the getter methods of the properties referenced in the form below -->
+		<!-- send form data to employees -> save -->
+		<form action="#" th:action="@{/employees/save}"
+						th:object="${employee}" method="POST">
+						<!-- here employee is the model attribute -->
+			
+		<!-- Add hidden form field to handle update -->
+		<!-- this binds to the model attribute - tells which employee to update -->
+		<input type="hidden" th:field="*{id}" />		
+						
+		<!-- define input fields -->
+		<!-- * selects the property on referenced th:object -->
+		<input type ="text" th:field="*{firstName}"
+					class ="form-control mb-4 col-4" placeholder="First Name">		
+					
+		<input type ="text" th:field="*{lastName}"
+					class ="form-control mb-4 col-4" placeholder="Last Name">		
+					
+		<input type ="text" th:field="*{email}"
+					class ="form-control mb-4 col-4" placeholder="Email">						
+		
+		<button type="submit" class = "btn btn-info col-2">Save Employee</button>
+		<!-- when the form is submitted will call all the setter methods of the properties referenced in the form below -->
+		</form>
+		
+		<!-- add navigation to go back to employees list page -->
+		
+		<hr>
+		<a th:href="@{/employees/list}">Back to Employee List Page</a>
+	
+	</div>
+
+</body>
+
+</html>

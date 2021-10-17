@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+
+<head>
+
+	 <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	
+
+	<title> Employee Directory </title>
+</head>
+
+<body>
+
+<div class="container"> <!--  this is a container for bootstrap classes -->
+
+
+	<h3>Employee Directory</h3>
+	<hr>
+	
+	<!-- Add employee button -->
+	<!-- @ symbol reference context path for application -> employees folder -> showForm.. page in templates directory -->
+	<a th:href="@{/employees/showFormforAddEmployees}"
+		class="btn btn-primary btn-sm mb-3">
+	Add Employee
+	</a>
+	
+	<table class="table table-bordered table-striped">
+	
+		<thead class="thead-dark"> <!-- heading for table -->	
+			<tr>	<!-- table row -->
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Action</th>
+			</tr>
+		</thead> 
+		
+		<tbody>
+			<tr th:each = "tempEmployee : ${employees}"> <!-- loop over the list (th:each -> loops over data) -->
+			<!--  employees is the attribute name in the model -->
+				<td th:text="${tempEmployee.firstName}"/>
+				<td th:text="${tempEmployee.lastName}"/>
+				<td th:text="${tempEmployee.email}"/>
+				
+				<td>
+					<!-- Add Update Button link -->
+					<a th:href="@{/employees/showFormForUpdateEmployee(employeeId =${tempEmployee.id})}"
+							class="btn btn-sm btn-info"> Update
+					<!-- here the parameter in () acts like ?employeeId=xxx -->
+					</a>
+				
+				<!-- Add Delete Button link -->
+				
+					<a th:href="@{/employees/deleteEmployee(employeeId =${tempEmployee.id})}"
+							class="btn btn-sm btn-info btn-danger"
+							onclick="if(!(confirm('Are you sure you wanna delete this employee ? '))) return false"> Delete
+					<!-- here the parameter in () acts like ?employeeId=xxx -->
+					</a>
+				</td>
+				
+			</tr>
+		</tbody>
+		
+	</table>
+</div>	
+2
+</body>
+
+</html>
